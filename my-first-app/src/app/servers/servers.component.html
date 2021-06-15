@@ -1,4 +1,15 @@
-<h4>First server component</h4>
-<app-server></app-server>
-<h4>Second server component</h4>
-<app-server></app-server>
+<label>{{serverName}}</label>
+<input type="text" class ="form-control" [(ngModel)]="serverName">
+<p *ngIf="serverCreationStatus">Server was created {{serverName}}</p>
+<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">Add server</button>
+<hr>
+<h3>Servers list</h3>
+<div>
+    <app-server *ngFor="let server of servers"></app-server>
+</div>
+<hr>
+<button class="btn btn-primary" (click)="onShowSecret()">Show secret</button>
+<div [hidden] = !showSecret> Secret Pass is very secret but is secret!</div>
+<hr>
+<H2>Logs</H2>
+<div *ngFor="let item of clickLog; let i = index" [ngClass]="{'blue': i>4}">{{item}}</div>
